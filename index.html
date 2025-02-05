@@ -1,13 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <link rel="stylesheet" href="./index.css"> <!-- Link CSS file -->
+</head>
+<body>
+    <div id="root"></div> <!-- React will mount here -->
+
+    <script type="module">
+        import React from 'react';
+        import ReactDOM from 'react-dom/client';
+        import { BrowserRouter } from 'react-router-dom';
+        import { Provider } from 'react-redux';
+
+        import App from './App.js';
+        import App1 from './App1.js';
+        import App3 from './app3.js';
+        import Footer from './footer.js';
+        import { store } from './store.js';
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            React.createElement(Provider, { store },
+                React.createElement(BrowserRouter, { basename: "/your-repo-name" },
+                    React.createElement('div', { className: "container" },
+                        React.createElement('div', { className: "row" },
+                            React.createElement(App, null),
+                            React.createElement(App1, null)
+                        ),
+                        React.createElement('div', { className: "row" },
+                            React.createElement(App3, null)
+                        ),
+                        React.createElement(Footer, null)
+                    )
+                )
+            )
+        );
+    </script>
+</body>
 </html>
